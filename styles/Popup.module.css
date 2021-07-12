@@ -1,0 +1,79 @@
+.wrapper {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0,0,0, 0.5);
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+    } 
+    to {
+        opacity: 1;
+    }
+}
+
+.popupVisible {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    position: absolute;
+    top: 10%;
+    bottom: 30%;
+    left: 25%;
+    right: 25%;
+    margin: auto;
+    
+    background: #EFEFEF;
+    border-radius: 15px;
+
+    animation: appear 0.2s linear;
+}
+
+.popupUnvisible {
+    display: none;
+}
+
+.captionBox, 
+.closeButton {
+    display: flex;
+    justify-content: center;
+}
+
+.captionBox {
+    grid-column-start: 2;
+
+    font-family: 'Segoe UI Light', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
+    font-size: 30px;
+    padding-bottom: 2rem;
+}
+
+.closeButton {
+    padding: 0 0 2rem 2rem;
+}
+
+.captionBox > span, 
+.closeButton > svg {
+    text-align: center;
+    align-self: center;
+}
+
+.closeButton > svg {
+    cursor: pointer;
+}
+
+.buttonHovered {
+    transition: fill 0.1s linear;
+    fill: black;
+}
+.buttonUnhovered {
+    transition: fill 0.1s linear;
+    fill: #515151;
+}

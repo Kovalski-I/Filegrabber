@@ -1,0 +1,41 @@
+/* Header */
+.head, 
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.head {
+    justify-content: space-between;
+}
+
+.logo,
+.login {
+    margin: 0 5rem;
+}
+
+
+.head {
+    background-color: #515151;
+}
+
+.logoCaption {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.5rem;
+    color: #EFEFEF;
+}
+
+.loggedIn {
+    font-size: 1.2rem;
+    color: #EFEFEF;
+}
+
+.loginLink {
+    text-decoration: underline;
+    transition: color 0.1s linear;
+    color: #EFEFEF !important;
+}
+.loginLink:hover {
+    transition: color 0.1s linear;
+    color: #c0c0c0 !important; 
+}
