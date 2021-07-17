@@ -16,6 +16,9 @@ const App = ({ Component, pageProps }: AppProps) => (
             <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" 
                 rel="stylesheet" key="fonts" 
             />
+            <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" 
+                rel="stylesheet" key="source_sans" 
+            />
 
             { /* React Bootstrap */ }
             <link

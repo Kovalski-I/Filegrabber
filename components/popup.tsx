@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react';
-
+import { GoogleLogin } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import CloseButton from '../components/svg/close';
+import LoginButton from '../components/loginbutton';
 
 import styles from '../styles/Popup.module.css';
 
@@ -9,32 +10,31 @@ interface Props {
     close: () => void;
 }
 
-const LoginPopup = ({ visible, close }: Props) => {
-    const popupRef = useRef<HTMLDivElement>(null);
+const LoginPopup = ({ visible, close }: Props) => (
+    <div className={visible ? styles.wrapper : undefined}>
+        <div className={visible ? styles.popupVisible : styles.popupUnvisible}>
+            <div className={styles.captionBox}>
+                <span>Logging in into Filegraber</span>
+            </div>
+            <CloseButton size={30} closePopup={close} />
 
-    // const keyframes = [
-    //     { transform: 'translateY(-100px)', opacity: '0' }, 
-    //     { transform: 'translateY(0)', opacity: '1' }
-    // ];
-    // const options = { duration: 200 };
-    // useEffect(() => {
-    //     const popup = popupRef.current;
-    //     if (visible) 
-    //         popup?.animate(keyframes, options)
-    //     else 
-    //         popup?.animate(keyframes.reverse(), options);
-    // }, [visible]);
-
-    return (
-        <div className={visible ? styles.wrapper : undefined}>
-            <div ref={popupRef} className={visible ? styles.popupVisible : styles.popupUnvisible}>
-                <div className={styles.captionBox}>
-                    <span>Logging in</span>
-                </div>
-                <CloseButton size={30} closePopup={close} />
-            </div> 
-        </div>
-    );
-}
+            { /* TODO: change callbacks when doing backend */ }            
+            <GoogleLogin
+                clientId="213876207663-5rpd5dn5f512t1u6diundppq0pe7s2i4.apps.googleusercontent.com"
+                render={() => <LoginButton caption="Log in with Google" />}
+                onSuccess={() => {}}
+                onFailure={() => {}}
+                cookiePolicy={'single_host_origin'}
+            />
+            <FacebookLogin
+                appId="903471543899702"
+                autoLoad={false}
+                fields="name,email,picture" 
+                render={() => <LoginButton caption="Log in with Facebook" />}
+                callback={() => {}}
+            />
+        </div> 
+    </div>
+);
 
 export default LoginPopup;

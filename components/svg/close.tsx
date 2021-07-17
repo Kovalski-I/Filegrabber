@@ -14,7 +14,7 @@ const CloseButton = ({ size, closePopup }: Props) => {
     return (
         <div className={styles.closeButton} >
             <svg width={size} height={size} 
-                 onClick={closePopup} 
+                onClick={closePopup} 
                 onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
                 viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg"
             >

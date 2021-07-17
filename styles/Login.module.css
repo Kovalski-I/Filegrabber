@@ -1,0 +1,27 @@
+.loginButton {
+    grid-column-start: 2;
+
+    display: flex;
+    justify-content: space-around;
+
+    background-color: #54A67A;
+    border-radius: 20px;
+    margin: 0 20px 60px 20px;
+    cursor: pointer;
+
+    transition: background-color 0.1s linear;
+}
+
+.loginButton:hover {
+    transition: background-color 0.1s linear;
+    background-color: #468a65;
+}
+
+.loginButton > span {
+    align-self: center;
+    text-align: center;
+
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.25rem;
+    color: #EFEFEF;
+}

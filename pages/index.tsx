@@ -23,6 +23,10 @@ const MainPage = ({ username }: Props) => {
         <>
             <Head>
                 <title>Filegraber</title>
+                <meta 
+                    name="google-signin-client_id" 
+                    content="213876207663-5rpd5dn5f512t1u6diundppq0pe7s2i4.apps.googleusercontent.com" 
+                />
             </Head>
 
             <div className={styles.head}>
@@ -37,7 +41,7 @@ const MainPage = ({ username }: Props) => {
                             { /* TODO: change <a> tag to Link component when doing backend */ }
                             Logged in as <a className={styles.loginLink} href="">{`@${username}`}</a>
                         </span> : 
-                        <Button variant="success" onClick={() => setPopupShown(true)}>Log In</Button> }
+                        <Button size="lg" variant="success" onClick={() => setPopupShown(true)}>Log In</Button> }
                 </div>
             </div>
 
