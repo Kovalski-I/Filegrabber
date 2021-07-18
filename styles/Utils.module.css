@@ -1,0 +1,32 @@
+.title, 
+.description {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.title {
+    font-size: 2.25rem;
+}
+
+.description {
+    font-size: 1.3rem;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.rectangle {
+    width: 110vw;
+    height: 400px;
+    background-color: #515151;
+    transform: rotate(5deg) translateX(-9vw);
+    margin: 5rem auto;
+}
+
+.rectangle span {
+    position: absolute;
+    transform: rotate(-5deg);
+    margin: 0 5rem 0 -5rem;
+}
+
+.rectangle div {
+    color: #efefef;
+}

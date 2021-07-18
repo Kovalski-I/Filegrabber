@@ -7,3 +7,20 @@ body {
     margin: 0;
     padding: 0;
 }
+
+html {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+article {
+    padding: 50px;
+}
+
+#blackDescription {
+    margin-top: 2rem;
+}
+
+main {
+    margin-top: 10px;
+}

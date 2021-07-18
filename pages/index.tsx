@@ -4,8 +4,14 @@ import Button from 'react-bootstrap/Button';
 import { useCallback, useState } from 'react';
 
 import LoginPopup from '../components/popup';
+import Info from '../components/info';
+
+import InterfaceImage from '../components/svg/interface';
+import DownloadImage from '../components/svg/download';
+import LaptopImage from '../components/svg/laptop';
 
 import styles from '../styles/pages/Main.module.css';
+import utils from '../styles/Utils.module.css';
 
 import type { GetServerSideProps } from 'next';
 
@@ -15,9 +21,7 @@ interface Props {
 
 const MainPage = ({ username }: Props) => {
     const [popupShown, setPopupShown] = useState(false);
-    const closePopup = useCallback(() => {
-        setPopupShown(false);
-    }, []);
+    const closePopup = useCallback(() => setPopupShown(false), []);
 
     return (
         <>
@@ -44,6 +48,52 @@ const MainPage = ({ username }: Props) => {
                         <Button size="lg" variant="success" onClick={() => setPopupShown(true)}>Log In</Button> }
                 </div>
             </div>
+
+            <main>
+                <Info left={() => (
+                    <article>
+                        <h2 className={utils.title}>Easily sync files between your devices</h2>
+                        <div className={utils.description}>
+                            Filegraber is free tool for sharing files and hyperlinks between your devices. 
+                            Just drop the file from one device and grab it from another. Everything is simple 
+                            as it should be.
+                        </div>
+                    </article>
+                )} right={() => (
+                    <InterfaceImage size={325} />
+                )} />
+
+                <div className={utils.rectangle}>
+                    <Info left={() => (
+                        <span>
+                            <DownloadImage size={300} />
+                        </span>
+                    )} right={() => (
+                        <article>
+                                <span id="blackDescription">
+                                    <h2 className={utils.title}>Share your files with others</h2>
+                                    <div className={utils.description}>
+                                        Filegraber can expose files to the page accessed via the public link.  
+                                        Everyone can also send you files using your public page anonymously and 
+                                        without registration.
+                                    </div>
+                                </span>
+                        </article>
+                    )} reverse />
+                </div>
+
+                <Info left={() => (
+                    <article>
+                        <h2 className={utils.title}>No registration needed</h2>
+                        <div className={utils.description}>
+                            You can start using Filegraber now if you have Google or Facebook account.
+                        </div>
+                        <Button size="lg" variant="success" onClick={() => setPopupShown(true)}>Log In</Button>
+                    </article>
+                )} right={() => (
+                    <LaptopImage size={275} />
+                )} />
+            </main>
 
             <LoginPopup visible={popupShown} close={closePopup} />
         </>

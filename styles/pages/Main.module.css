@@ -6,6 +6,12 @@
 }
 
 .head {
+    position: sticky;
+    position: -webkit-sticky;
+    box-shadow: 0 0 8px black;
+    z-index: 10;
+    top: 0;
+
     justify-content: space-between;
 }
 
@@ -38,4 +44,23 @@
 .loginLink:hover {
     transition: color 0.1s linear;
     color: #c0c0c0 !important; 
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+
+.info div {
+    text-align: center;
+    align-self: center;
+}
+
+.infoLeft {
+    flex: 3;
+}
+
+.infoRight {
+    flex: 2;
 }
