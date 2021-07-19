@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Button from 'react-bootstrap/Button';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import LoginPopup from '../components/popup';
 import Info from '../components/info';
@@ -23,6 +23,16 @@ const MainPage = ({ username }: Props) => {
     const [popupShown, setPopupShown] = useState(false);
     const closePopup = useCallback(() => setPopupShown(false), []);
 
+    useEffect(() => {
+        const blackDesc = document.querySelector('.blackDescription');
+        if (!blackDesc) return;
+
+        document.addEventListener('scroll', () => {
+            if (window.scrollY > 150) 
+                blackDesc.className = styles.blackDescriptionAnim;
+        });
+    }, []);
+
     return (
         <>
             <Head>
@@ -43,7 +53,7 @@ const MainPage = ({ username }: Props) => {
                     { username ? 
                         <span className={styles.loggedIn}>
                             { /* TODO: change <a> tag to Link component when doing backend */ }
-                            Logged in as <a className={styles.loginLink} href="">{`@${username}`}</a>
+                            Logged in as <a className={styles.loginLink} href="">{username}</a>
                         </span> : 
                         <Button size="lg" variant="success" onClick={() => setPopupShown(true)}>Log In</Button> }
                 </div>
@@ -65,19 +75,19 @@ const MainPage = ({ username }: Props) => {
 
                 <div className={utils.rectangle}>
                     <Info left={() => (
-                        <span>
+                        <span className="downloadImage">
                             <DownloadImage size={300} />
                         </span>
                     )} right={() => (
                         <article>
-                                <span id="blackDescription">
-                                    <h2 className={utils.title}>Share your files with others</h2>
-                                    <div className={utils.description}>
-                                        Filegraber can expose files to the page accessed via the public link.  
-                                        Everyone can also send you files using your public page anonymously and 
-                                        without registration.
-                                    </div>
-                                </span>
+                            <span className="blackDescription">
+                                <h2 className={utils.title}>Share your files with others</h2>
+                                <div className={utils.description}>
+                                    Filegraber can expose files to the page accessed via the public link.  
+                                    Everyone can also send you files using your public page anonymously and 
+                                    without registration.
+                                </div>
+                            </span>
                         </article>
                     )} reverse />
                 </div>
@@ -88,7 +98,15 @@ const MainPage = ({ username }: Props) => {
                         <div className={utils.description}>
                             You can start using Filegraber now if you have Google or Facebook account.
                         </div>
-                        <Button size="lg" variant="success" onClick={() => setPopupShown(true)}>Log In</Button>
+                        { username ? 
+                            <span className={styles.loggedInWhite}>
+                                You're already logged in, {' '} 
+                                { /* TODO: Change <a> tag to Link when doing backend */ }
+                                <a className={styles.loginLinkWhite} href="">{username}</a>
+                            </span> : 
+                            <Button size="lg" variant="success" onClick={() => setPopupShown(true)}>
+                                Log In
+                            </Button> }
                     </article>
                 )} right={() => (
                     <LaptopImage size={275} />

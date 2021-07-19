@@ -36,6 +36,11 @@
     color: #EFEFEF;
 }
 
+.loggedInWhite {
+    font-size: 1.2rem;
+    color: #515151;
+}
+
 .loginLink {
     text-decoration: underline;
     transition: color 0.1s linear;
@@ -44,6 +49,16 @@
 .loginLink:hover {
     transition: color 0.1s linear;
     color: #c0c0c0 !important; 
+}
+
+.loginLinkWhite {
+    text-decoration: underline;
+    transition: color 0.1s linear;
+    color: #515151 !important;
+}
+.loginLinkWhite:hover {
+    transition: color 0.1s linear;
+    color: black !important; 
 }
 
 .info {
@@ -63,4 +78,21 @@
 
 .infoRight {
     flex: 2;
+}
+
+/* Animations */
+.imgRectAnim {
+    transition: opacity 0.5s linear;
+    opacity: 1;
+}
+
+.rectAnim {
+    transition: width 1.5s cubic-bezier(.09,.52,.29,.99);
+    width: 728px;
+}
+
+.blackDescriptionAnim {
+    transition: all 0.3s linear;
+    transform: translateX(0);
+    opacity: 1;
 }

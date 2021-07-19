@@ -17,10 +17,20 @@ article {
     padding: 50px;
 }
 
-#blackDescription {
-    margin-top: 2rem;
+.blackDescription {
+    margin-top: 2rem !important;
+    transform: translateX(100px);
+    opacity: 0;
 }
 
 main {
     margin-top: 10px;
+}
+
+.imgRect {
+    opacity: 0;
+}
+
+.rect {
+    width: 0;
 }
