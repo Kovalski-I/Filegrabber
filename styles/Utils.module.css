@@ -17,13 +17,13 @@
     width: 110vw;
     height: 400px;
     background-color: #515151;
-    transform: rotate(5deg) translateX(-9vw);
+    transform: rotate(4deg) translateX(-9vw);
     margin: 5rem auto;
 }
 
 .rectangle span {
     position: absolute;
-    transform: rotate(-5deg);
+    transform: rotate(-4deg);
     margin: 0 5rem 0 -5rem;
 }
 

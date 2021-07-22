@@ -1,7 +1,12 @@
 import styles from '../styles/Login.module.css';
 
-const LoginButton = ({ caption }: { caption: string }) => (
-    <div className={styles.loginButton}>
+interface Props {
+    caption: string;
+    onClick: () => void;
+}
+
+const LoginButton = ({ caption, onClick }: Props) => (
+    <div className={styles.loginButton} onClick={onClick}>
         <span>{caption}</span>
     </div>
 );

@@ -20,20 +20,25 @@ const LoginPopup = ({ visible, close }: Props) => (
             </div>
             <CloseButton size={30} closePopup={close} />
 
-            { /* TODO: change callbacks when doing backend */ }            
+            { /* Handle possible errors when testing */ }            
             <GoogleLogin
                 clientId={GOOGLE_API_CLIENT_ID}
-                render={() => <LoginButton caption="Log in with Google" />}
-                onSuccess={() => {}}
-                onFailure={() => {}}
+                render={renderProps => (
+                    <LoginButton 
+                        onClick={renderProps.onClick} caption="Log in with Google" 
+                    />
+                )}
+                onSuccess={response => console.log(response)}
+                onFailure={() => alert('Failure while trying to log you in')}
                 cookiePolicy={'single_host_origin'}
             />
             <FacebookLogin
                 appId={FACEBOOK_APP_ID}
-                autoLoad={false}
-                fields="name,email,picture" 
-                render={() => <LoginButton caption="Log in with Facebook" />}
-                callback={() => {}}
+                fields="name,picture" 
+                render={(renderProps: { onClick: () => void; }) => (
+                    <LoginButton onClick={renderProps.onClick} caption="Log in with Facebook" />
+                )}
+                callback={(response: unknown) => console.log(response)}
             />
         </div> 
     </div>
