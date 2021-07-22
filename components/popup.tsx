@@ -3,6 +3,8 @@ import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props
 import CloseButton from '../components/svg/close';
 import LoginButton from '../components/loginbutton';
 
+import { FACEBOOK_APP_ID, GOOGLE_API_CLIENT_ID } from '../secrets';
+
 import styles from '../styles/Popup.module.css';
 
 interface Props {
@@ -20,14 +22,14 @@ const LoginPopup = ({ visible, close }: Props) => (
 
             { /* TODO: change callbacks when doing backend */ }            
             <GoogleLogin
-                clientId="213876207663-5rpd5dn5f512t1u6diundppq0pe7s2i4.apps.googleusercontent.com"
+                clientId={GOOGLE_API_CLIENT_ID}
                 render={() => <LoginButton caption="Log in with Google" />}
                 onSuccess={() => {}}
                 onFailure={() => {}}
                 cookiePolicy={'single_host_origin'}
             />
             <FacebookLogin
-                appId="903471543899702"
+                appId={FACEBOOK_APP_ID}
                 autoLoad={false}
                 fields="name,email,picture" 
                 render={() => <LoginButton caption="Log in with Facebook" />}

@@ -10,6 +10,8 @@ import InterfaceImage from '../components/svg/interface';
 import DownloadImage from '../components/svg/download';
 import LaptopImage from '../components/svg/laptop';
 
+import { GOOGLE_API_CLIENT_ID } from '../secrets';
+
 import styles from '../styles/pages/Main.module.css';
 import utils from '../styles/Utils.module.css';
 
@@ -39,7 +41,7 @@ const MainPage = ({ username }: Props) => {
                 <title>Filegraber</title>
                 <meta 
                     name="google-signin-client_id" 
-                    content="213876207663-5rpd5dn5f512t1u6diundppq0pe7s2i4.apps.googleusercontent.com" 
+                    content={GOOGLE_API_CLIENT_ID} 
                 />
             </Head>
 

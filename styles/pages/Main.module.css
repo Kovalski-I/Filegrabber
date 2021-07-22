@@ -80,6 +80,13 @@
     flex: 2;
 }
 
+.interfaceImg {
+    box-shadow: 0 0 8px black;
+    border-radius: 20px;
+    padding: 3px;
+    margin-right: 1rem;
+}
+
 /* Animations */
 .imgRectAnim {
     transition: opacity 0.5s linear;
