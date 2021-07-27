@@ -17,6 +17,10 @@ article {
     padding: 50px;
 }
 
+#downloadImage {
+    transform: translateY(-35px) rotate(-4deg);
+}
+
 .blackDescription {
     margin-top: 2rem !important;
     transform: translateX(100px);

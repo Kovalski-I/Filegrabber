@@ -99,7 +99,7 @@
 }
 
 .blackDescriptionAnim {
-    transition: all 0.3s linear;
+    transition: opacity 0.3s linear;
     transform: translateX(0);
     opacity: 1;
 }

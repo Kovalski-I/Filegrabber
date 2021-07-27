@@ -1,9 +1,12 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import Image from 'next/image';
 import Button from 'react-bootstrap/Button';
 import { useCallback, useEffect, useState } from 'react';
 
+import { validateToken } from '../lib/validate_tokens';
 import LoginPopup from '../components/popup';
+import Footer from '../components/footer';
 import Info from '../components/info';
 
 import InterfaceImage from '../components/svg/interface';
@@ -18,7 +21,7 @@ import utils from '../styles/Utils.module.css';
 import type { GetServerSideProps } from 'next';
 
 interface Props {
-    username?: string
+    username?: string;
 }
 
 const MainPage = ({ username }: Props) => {
@@ -30,8 +33,7 @@ const MainPage = ({ username }: Props) => {
         if (!blackDesc) return;
 
         document.addEventListener('scroll', () => {
-            if (window.scrollY > 150) 
-                blackDesc.className = styles.blackDescriptionAnim;
+            if (window.scrollY > 150) blackDesc.className = styles.blackDescriptionAnim;
         });
     }, []);
 
@@ -54,8 +56,10 @@ const MainPage = ({ username }: Props) => {
                 <div className={styles.login}>
                     { username ? 
                         <span className={styles.loggedIn}>
-                            { /* TODO: change <a> tag to Link component when doing backend */ }
-                            Logged in as <a className={styles.loginLink} href="">{username}</a>
+                            Logged in as {' '} 
+                            <Link href="/home">
+                                <a className={styles.loginLink}>{username}</a>
+                            </Link>
                         </span> : 
                         <Button size="lg" variant="success" onClick={() => setPopupShown(true)}>Log In</Button> }
                 </div>
@@ -77,7 +81,7 @@ const MainPage = ({ username }: Props) => {
 
                 <div className={utils.rectangle}>
                     <Info left={() => (
-                        <span className="downloadImage">
+                        <span id="downloadImage">
                             <DownloadImage size={300} />
                         </span>
                     )} right={() => (
@@ -103,8 +107,9 @@ const MainPage = ({ username }: Props) => {
                         { username ? 
                             <span className={styles.loggedInWhite}>
                                 You're already logged in, {' '} 
-                                { /* TODO: Change <a> tag to Link when doing backend */ }
-                                <a className={styles.loginLinkWhite} href="">{username}</a>
+                                <Link href="/home">
+                                    <a className={styles.loginLinkWhite}>{username}</a>
+                                </Link>
                             </span> : 
                             <Button size="lg" variant="success" onClick={() => setPopupShown(true)}>
                                 Log In
@@ -116,14 +121,19 @@ const MainPage = ({ username }: Props) => {
             </main>
 
             <LoginPopup visible={popupShown} close={closePopup} />
+
+            <Footer />
         </>
     );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-    // TODO: define it so it returns the username
-    return {
-        props: {}
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+    const { username } = req.cookies;
+    if (!username) 
+        return { props: { username: null } 
+    };
+    else return {
+        props: { username }
     };
 }
 

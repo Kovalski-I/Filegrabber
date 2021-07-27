@@ -29,9 +29,7 @@ const App = ({ Component, pageProps }: AppProps) => (
                 key="bootstrap"
             />
         </Head>
-
         <Component {...pageProps} />
-        <Footer />
     </>
 );
 

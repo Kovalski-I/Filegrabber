@@ -24,7 +24,7 @@
 .rectangle span {
     position: absolute;
     transform: rotate(-4deg);
-    margin: 0 5rem 0 -5rem;
+    margin: 2rem 5rem 0 -5rem;
 }
 
 .rectangle div {
