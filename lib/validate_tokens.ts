@@ -27,9 +27,7 @@ export const validateGoogleToken = async (id_token: string) => {
 
 export const validateFacebookToken = async (id_token: string) => {
     const response: FacebookApiResponse = await axios.get(
-        'https://graph.facebook.com/me', {
-            params: { id_token }
-        }
+        `https://graph.facebook.com/me?access_token=${id_token}`
     );
 
     const { id, name } = response.data;

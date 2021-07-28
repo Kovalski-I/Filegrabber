@@ -43,7 +43,6 @@ handler.post(async (req: ApiRequest, res) => {
 
     await req.session.commit();
     
-    // res.setHeader('Set-Cookie', `name=${username}`);
     res.end();
 });
 

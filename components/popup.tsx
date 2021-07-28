@@ -36,7 +36,7 @@ const LoginPopup = ({ visible, close }: Props) => {
         console.log(response);
 
         const { accessToken } = response;
-        await axios.post('/api/users', { accessToken, auth: 'f' });
+        await axios.post('/api/users', { id_token: accessToken, auth: 'f' });
         
         router.push('/home');
     }, []);

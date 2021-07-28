@@ -10,8 +10,9 @@ const HomePage = () => {
     const { data, error } = useSWR('/api/users', fetcher);
 
     useEffect(() => {
-        if (!data) return;
+        if (!data) {}
         else if (!(data.user_id && data.username)) router.push('/');
+        else document.cookie = `username=${data.username}`;
     }, [data]);
 
     if (!data) 
@@ -19,7 +20,7 @@ const HomePage = () => {
         return null;
     else if (!(data.user_id && data.username) || error)
         // no data recieved
-        return <div>Redirecting...</div>; 
+        return null; 
 
     return (
         <>

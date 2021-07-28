@@ -129,12 +129,9 @@ const MainPage = ({ username }: Props) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     const { username } = req.cookies;
-    if (!username) 
-        return { props: { username: null } 
-    };
-    else return {
-        props: { username }
-    };
+
+    if (!username) return { props: { username: null } };
+    else return { props: { username } };
 }
 
 export default MainPage;
