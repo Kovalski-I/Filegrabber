@@ -1,15 +1,20 @@
+import * as path from 'path';
 import nc from 'next-connect';
+import sqlite3  from 'sqlite3';
+import { open } from 'sqlite';
 import { session } from 'next-session';
 
+import * as fs from 'fs';
+
 import { validateToken } from '../../lib/validate_tokens';
-import { generateCoookie } from '../../lib/cookie';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
+import type { File } from '../../types';
 
 interface ApiRequest {
     body: {
         id_token: string;
-        auth: AuthType;
+        auth: 'g' | 'f';
     }
     session: {
         user_id: string;
@@ -26,12 +31,18 @@ handler.use(
 
 handler.get(async (req: ApiRequest, res) => {
     const { user_id, username } = req.session;
+    const db = await open({
+        filename: 'db.sqlite',
+        driver: sqlite3.Database
+    });
+
+    const rows = await db.all('SELECT * FROM files WHERE user_id = ?', user_id);
 
     await req.session.commit();
     if (!(user_id && username))
-        res.json({ user_id: null, username: null });
+        res.json({ user_id: null, username: null, rows: null });
     else 
-        res.json({ user_id, username });
+        res.json({ user_id, username, rows });
 });
 
 handler.post(async (req: ApiRequest, res) => {
