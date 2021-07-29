@@ -33,9 +33,9 @@ const LoginPopup = ({ visible, close }: Props) => {
     }, []);
 
     const handleFacebookLogin = useCallback(async (response: ReactFacebookLoginInfo) => {
-        console.log(response);
-
         const { accessToken } = response;
+        if (!accessToken) return;
+
         await axios.post('/api/users', { id_token: accessToken, auth: 'f' });
         
         router.push('/home');

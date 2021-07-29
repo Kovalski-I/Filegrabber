@@ -35,5 +35,5 @@ export const validateFacebookToken = async (id_token: string) => {
 }
 
 export const validateToken = async (auth: 'g' | 'f', token: string) => {
-    return auth === 'g' ? await validateGoogleToken(token) : await validateFacebookToken(token)
+    return auth === 'g' ? await validateGoogleToken(token) : await validateFacebookToken(token);
 }

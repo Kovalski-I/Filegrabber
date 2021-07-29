@@ -11,7 +11,7 @@ const HomePage = () => {
 
     useEffect(() => {
         if (!data) {}
-        else if (!(data.user_id && data.username)) router.push('/');
+        else if (!(data.user_id && data.username) || error) router.push('/');
         else document.cookie = `username=${data.username}`;
     }, [data]);
 
@@ -26,6 +26,8 @@ const HomePage = () => {
         <>
             <div>{data.user_id}</div>
             <div>{data.username}</div>
+            {data.rows.map((row: { [key: string]: any }) => 
+                <div>{Object.values(row).map(value => <span>{value + ' '}</span>)}</div>)}
         </>
     );
 }
