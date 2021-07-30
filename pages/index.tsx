@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import Button from 'react-bootstrap/Button';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { validateToken } from '../lib/validate_tokens';
 import LoginPopup from '../components/popup';
@@ -26,6 +26,12 @@ interface Props {
 
 const MainPage = ({ username }: Props) => {
     const [popupShown, setPopupShown] = useState(false);
+    const [loginButtonAnim, animateButton] = useState(false);
+
+    const animStyle = useMemo(() => {
+        return { transition: 'opacity 0.3s linear', opacity: 1 };
+    }, []);
+
     const closePopup = useCallback(() => setPopupShown(false), []);
 
     useEffect(() => {
@@ -33,7 +39,9 @@ const MainPage = ({ username }: Props) => {
         if (!blackDesc) return;
 
         document.addEventListener('scroll', () => {
+            console.log(window.scrollY);
             if (window.scrollY > 150) blackDesc.className = styles.blackDescriptionAnim;
+            if (window.scrollY > 650) animateButton(true);
         });
     }, []);
 
@@ -111,7 +119,7 @@ const MainPage = ({ username }: Props) => {
                                     <a className={styles.loginLinkWhite}>{username}</a>
                                 </Link>
                             </span> : 
-                            <Button size="lg" variant="success" onClick={() => setPopupShown(true)}>
+                            <Button id="loginButton" style={loginButtonAnim ? animStyle : undefined} size="lg" variant="success" onClick={() => setPopupShown(true)}>
                                 Log In
                             </Button> }
                     </article>
