@@ -10,3 +10,5 @@ handler.post(async (req: any, res) => {
     await req.session.destroy();
     res.end();
 });
+
+export default handler;

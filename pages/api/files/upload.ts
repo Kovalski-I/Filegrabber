@@ -20,6 +20,9 @@ handler.post(async (req: any, res) => {
     const { info, is_file, is_public } = req.body;
     const { user_id } = req.session;
 
+    if (!user_id)
+        res.status(500).json({ error: 'user is not logged in' });
+
     const db = await open({ filename: 'db.sqlite', driver: sqlite3.Database });
     const result = await db.run(
         'INSERT INTO files (info, is_file, is_public, user_id) VALUES (?, ?, ?, ?)', 

@@ -17,6 +17,9 @@ handler.post(async (req: any, res) => {
     const { user_id } = req.session;
     const { file_id, is_file } = req.body;
 
+    if (!user_id)
+        res.status(500).json({ error: 'user is not logged in' });
+
     if (is_file) {
         const { info } = await db.get('SELECT info, is_file FROM files WHERE file_id = ?', file_id);
         const hashed_name = getHashedFilename(user_id, file_id, path.extname(info));
@@ -31,3 +34,5 @@ handler.post(async (req: any, res) => {
     db.close();
     res.end();
 });
+
+export default handler;

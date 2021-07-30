@@ -16,6 +16,10 @@ handler.use(
 
 handler.get(async (req: ApiRequest, res) => {
     const { user_id, username } = req.session;
+
+    if (!(user_id && username))
+        res.status(500).json({ error: 'user is not logged in' });
+
     const db = await open({
         filename: 'db.sqlite',
         driver: sqlite3.Database
@@ -26,15 +30,15 @@ handler.get(async (req: ApiRequest, res) => {
     await req.session.commit();
     db.close();
 
-    if (!(user_id && username))
-        res.json({ user_id: null, username: null, rows: null });
-    else 
-        res.json({ user_id, username, rows });
+    res.json({ user_id, username, rows });
 });
 
 handler.post(async (req: ApiRequest, res) => {
     const { id_token, auth } = req.body;
     const [user_id, username] = await validateToken(auth, id_token);
+
+    if (auth !== 'g' && auth !== 'f')
+        res.status(500).json({ error: 'auth method is not valid' });
 
     req.session.user_id = [auth, user_id].join('-');
     req.session.username = username;
