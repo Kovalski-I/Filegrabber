@@ -11,7 +11,9 @@
   "dependencies": {
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "create-hash": "^1.2.0",
     "google-auth-library": "^7.3.0",
+    "multer": "^1.4.2",
     "next": "11.0.1",
     "next-connect": "^0.10.1",
     "next-session": "^3.4.0",
@@ -25,7 +27,9 @@
     "swr": "^0.5.6"
   },
   "devDependencies": {
+    "@types/create-hash": "^1.2.2",
     "@types/express-session": "^1.17.4",
+    "@types/multer": "^1.4.7",
     "@types/node": "^16.4.6",
     "@types/react": "17.0.14",
     "@types/react-facebook-login": "^4.1.4",

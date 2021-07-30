@@ -1,27 +1,12 @@
-import * as path from 'path';
 import nc from 'next-connect';
 import sqlite3  from 'sqlite3';
 import { open } from 'sqlite';
 import { session } from 'next-session';
 
-import * as fs from 'fs';
-
 import { validateToken } from '../../lib/validate_tokens';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
-import type { File } from '../../types';
-
-interface ApiRequest {
-    body: {
-        id_token: string;
-        auth: 'g' | 'f';
-    }
-    session: {
-        user_id: string;
-        username: string;
-        commit: () => Promise<void>;
-    }
-}
+import type { ApiRequest } from '../../types';
 
 const handler = nc<NextApiRequest, NextApiResponse>();
 
@@ -39,6 +24,8 @@ handler.get(async (req: ApiRequest, res) => {
     const rows = await db.all('SELECT * FROM files WHERE user_id = ?', user_id);
 
     await req.session.commit();
+    db.close();
+
     if (!(user_id && username))
         res.json({ user_id: null, username: null, rows: null });
     else 

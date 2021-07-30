@@ -2,11 +2,12 @@ import { useCallback } from 'react';
 import { GoogleLogin } from 'react-google-login';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+
+// @ts-ignore
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 
 import CloseButton from '../components/svg/close';
 import LoginButton from '../components/loginbutton';
-import { generateCoookie, deleteCookie } from '../lib/cookie';
 
 import { FACEBOOK_APP_ID, GOOGLE_API_CLIENT_ID } from '../secrets';
 
