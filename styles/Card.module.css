@@ -1,0 +1,32 @@
+.card {
+    min-height: 125px;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.extension, 
+.filename {
+    font-family: 'Quicksand', sans-serif;
+    color: #efefef;
+}
+
+.extension {
+    font-size: 1.5rem;
+}
+
+.filename {
+    margin: 0.2rem 0;
+}
+
+.buttons {
+    display: flex;
+}
+
+.buttons div {
+    margin: 0 1rem;
+}

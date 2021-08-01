@@ -1,13 +1,25 @@
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import Head from 'next/head';
 import useSWR from 'swr';
 import { useEffect } from 'react';
+
+import AppPage from '../components/app_page';
+import Footer from '../components/footer';
+
+import type { FileCard } from '../types';
+
+interface Data {
+    user_id: string;
+    username: string;
+    rows: FileCard[];
+}
 
 const fetcher = (url: string) => axios.get(url).then(res => res.data);
 
 const HomePage = () => {
     const router = useRouter();
-    const { data, error } = useSWR('/api/users', fetcher);
+    const { data, error } = useSWR<Data, Error>('/api/users', fetcher);
 
     useEffect(() => {
         if (!data) {}
@@ -24,10 +36,12 @@ const HomePage = () => {
 
     return (
         <>
-            <div>{data.user_id}</div>
-            <div>{data.username}</div>
-            {data.rows.map((row: { [key: string]: any }) => 
-                <div>{Object.values(row).map(value => <span>{value + ' '}</span>)}</div>)}
+            <Head>
+                <title>Home</title>
+            </Head>
+
+            <AppPage isPublic={false} username={data.username} files={data.rows} />
+            <Footer inMain />
         </>
     );
 }

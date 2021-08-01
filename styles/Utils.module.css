@@ -30,3 +30,13 @@
 .rectangle div {
     color: #efefef;
 }
+
+.imageHovered {
+    transition: fill 0.1s linear;
+    fill: #cacaca;
+}
+
+.imageUnhovered {
+    transition: fill 0.1s linear;
+    fill: #fefefe;
+}

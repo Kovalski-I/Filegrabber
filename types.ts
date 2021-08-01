@@ -7,7 +7,7 @@ export interface ApiRequest {
     }
 }
 
-export interface File {
+export interface FileCard {
     file_id: number;
     info: string;
     is_file: number;

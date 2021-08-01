@@ -1,4 +1,4 @@
-.footer {
+.footer, .footerMain {
     display: grid;
     grid-template-columns: 2;
 
@@ -8,13 +8,20 @@
     margin-top: 5rem;
 }
 
-.footer * {
+.footerMain {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    margin-top: 0;
+}
+
+.footer *, .footerMain * {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.footer a {
+.footer a, .footerMain a {
     font-family: 'Source Sans Pro' sans-serif;
     font-size: 1.25rem;
     transition: color 0.1s linear;
@@ -23,7 +30,7 @@
     margin: 1rem 0.1rem 0.1rem 0.1rem;
 }
 
-.footer a:hover {
+.footer a:hover, .footerMain a:hover {
     transition: color 0.1s linear;
     color: #cacaca;
 
