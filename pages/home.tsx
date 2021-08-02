@@ -40,10 +40,16 @@ const HomePage = () => {
                 <title>Home</title>
             </Head>
 
-            <AppPage isPublic={false} username={data.username} files={data.rows} />
+            <AppPage isPublic={false} username={data.username} user_id={data.user_id} files={data.rows} />
             <Footer inMain />
         </>
     );
+}
+
+export const getServerSideProps = async () => {
+    return {
+        props: {}
+    };
 }
 
 export default HomePage;

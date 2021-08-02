@@ -6,7 +6,7 @@ import sqlite3  from 'sqlite3';
 import { open } from 'sqlite';
 import { session } from 'next-session';
 
-import { getHashedFilename } from '../../../lib/hash';
+import { getHashedFilename, getHash } from '../../../lib/hash';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -18,7 +18,9 @@ handler.use(upload.single('file'));
 
 handler.post(async (req: any, res) => { 
     const { info, is_file, is_public } = req.body;
-    const { user_id } = req.session;
+
+    let { user_id } = req.body;
+    if (!user_id) user_id = req.session.user_id;
 
     if (!user_id)
         res.status(500).json({ error: 'user is not logged in' });
