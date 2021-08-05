@@ -1,4 +1,4 @@
-.footer, .footerMain {
+.footer, .footerMain, .footerError {
     display: grid;
     grid-template-columns: 2;
 
@@ -15,13 +15,17 @@
     margin-top: 0;
 }
 
-.footer *, .footerMain * {
+.footerError {
+    margin-top: 0;
+}
+
+.footer *, .footerMain *, .footerError * {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.footer a, .footerMain a {
+.footer a, .footerMain a, .footerError a {
     font-family: 'Source Sans Pro' sans-serif;
     font-size: 1.25rem;
     transition: color 0.1s linear;
@@ -30,7 +34,7 @@
     margin: 1rem 0.1rem 0.1rem 0.1rem;
 }
 
-.footer a:hover, .footerMain a:hover {
+.footer a:hover, .footerMain a:hover, .footerError a:hover {
     transition: color 0.1s linear;
     color: #cacaca;
 

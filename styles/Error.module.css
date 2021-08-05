@@ -1,0 +1,30 @@
+.error {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.error > * {
+    text-align: center;
+    flex: 1;
+}
+
+.title, 
+.caption {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Quicksand', sans-serif;
+}
+
+.title {
+    font-size: 2.5rem;
+    margin-top: 12rem;
+}
+
+.caption {
+    font-size: 1.75rem;
+    margin-bottom: 12rem;
+}

@@ -5,8 +5,13 @@ import TwitterImage from './svg/twitter';
 
 import styles from '../styles/Footer.module.css';
 
-const Footer = ({ inMain }: { inMain?: boolean }) => (
-    <div className={inMain ? styles.footerMain : styles.footer}>
+const Footer = ({ inMain, inError }: { inMain?: boolean, inError?: boolean }) => (
+    <div className={(() => { 
+        if (inMain) return styles.footerMain;
+        else if (inError) return styles.footerError;
+        else return styles.footer;
+        })()}
+    >
         <Link href="/">Main</Link>
         <a className={styles.contact} href="mailto: timkovalskii@gmail.com">Contact</a>
 
