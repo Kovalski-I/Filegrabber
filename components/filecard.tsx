@@ -16,9 +16,9 @@ const FileCardComponent = ({ file }: { file: FileCard }) => {
 
     const colors = useMemo(() => ['#5488A6', '#54A67A', '#BA5252', '#9F54A6', '#D89648'], []);
 
-    const grabFile = useCallback(() => {
+    const grabFile = useCallback(async () => {
         const { file_id, is_file } = file;
-        axios.post('api/files/delete', { file_id, is_file });
+        await axios.post('/api/files/delete', { file_id, is_file });
     }, []);
 
     useEffect(() => {
@@ -30,11 +30,11 @@ const FileCardComponent = ({ file }: { file: FileCard }) => {
     return (
         <div ref={cardRef} className={styles.card}>
             <div className={styles.extension}>
-                {file.is_file ? extname(file.info) : 'Link'}
+                {file.is_file === 'true' ? extname(file.info) : 'Link'}
             </div>
 
             <div className={styles.filename}>
-                {file.is_file ? file.info : new URL(file.info).hostname}
+                {file.is_file === 'true' ? file.info : new URL(file.info).hostname}
             </div>
 
             <div className={styles.buttons}>
@@ -43,8 +43,8 @@ const FileCardComponent = ({ file }: { file: FileCard }) => {
                         href={file.is_file ? 
                             `/uploads/${getHashedFilename(file.user_id, file.file_id.toString(), extname(file.info))}` : 
                             file.info}
-                        download={file.is_file ? file.info : undefined}
-                        target={!file.is_file ? '_blank' : undefined}
+                        download={file.is_file === 'true' ? file.info : undefined}
+                        target={file.is_file === 'false' ? '_blank' : undefined}
                     >
                         <GrabCopyImage size={20} />
                     </a>
@@ -52,10 +52,10 @@ const FileCardComponent = ({ file }: { file: FileCard }) => {
 
                 <div className={styles.grabFile} title="Grab file">
                     <a 
-                        href={file.is_file ? 
+                        href={file.is_file === 'true' ? 
                             `/uploads/${getHashedFilename(file.user_id, file.file_id.toString(), extname(file.info))}` : 
                             file.info}
-                        download={file.is_file ? file.info : undefined}
+                        download={file.is_file === 'true' ? file.info : undefined}
                         onClick={grabFile}
                     >
                         <GrabFileImage size={20} />

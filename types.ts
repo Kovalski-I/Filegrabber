@@ -10,7 +10,7 @@ export interface ApiRequest {
 export interface FileCard {
     file_id: number;
     info: string;
-    is_file: number;
-    is_public: number;
+    is_file: string;
+    is_public: string;
     user_id: string;
 }

@@ -53,9 +53,17 @@
 .cardsField {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 175px));
-    gap: 1.5rem;
+    grid-template-rows: repeat(auto-fill, minmax(100px, 150px));
+    height: 100%;
+    gap: 2rem;
 
     padding: 0 2.5rem;
+
+    overflow: scroll;
+}
+
+.fileInput {
+    display: none;
 }
 
 .imageHovered {

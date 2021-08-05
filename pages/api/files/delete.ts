@@ -9,7 +9,9 @@ import { getHashedFilename } from '../../../lib/hash';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-const handler = nc<NextApiRequest, NextApiResponse>();
+const handler = nc<NextApiRequest, NextApiResponse>({
+    onError: (err, req, res) => res.status(500).end()
+});
 handler.use(session({ autoCommit: false }));
 
 handler.post(async (req: any, res) => {
@@ -22,12 +24,17 @@ handler.post(async (req: any, res) => {
     if (!user_id)
         res.status(500).json({ error: 'user is not logged in' });
 
-    if (is_file) {
+    console.log('is_file:', is_file)
+    if (is_file === 'true') {
         const { info } = await db.get('SELECT info, is_file FROM files WHERE file_id = ?', file_id);
         const hashed_name = getHashedFilename(user_id, file_id, path.extname(info));
 
         try {
-            fs.unlinkSync(path.resolve('/public/uploads', hashed_name));
+            if (process.env.NODE_ENV === 'development')
+                fs.unlinkSync(path.join(__dirname,  '../../../../../public/uploads', hashed_name));
+            else 
+                fs.unlinkSync(path.join(__dirname, '../../../../public/uploads', hashed_name));
+
         } catch {
             // file was not found in the fs, just deleting the record
         }
