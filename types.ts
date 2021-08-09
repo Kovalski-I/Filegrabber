@@ -14,3 +14,10 @@ export interface FileCard {
     is_public: string;
     user_id: string;
 }
+
+export interface InsertIntoFilesParams {
+    info: string;
+    is_file: string;
+    is_public: string;
+    user_id: string;
+}

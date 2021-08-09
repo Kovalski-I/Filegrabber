@@ -24,9 +24,8 @@ handler.post(async (req: any, res) => {
     if (!user_id)
         res.status(500).json({ error: 'user is not logged in' });
 
-    console.log('is_file:', is_file)
     if (is_file === 'true') {
-        const { info } = await db.get('SELECT info, is_file FROM files WHERE file_id = ?', file_id);
+        const { info } = await db.get('SELECT info FROM files WHERE file_id = ?', file_id);
         const hashed_name = getHashedFilename(user_id, file_id, path.extname(info));
 
         try {

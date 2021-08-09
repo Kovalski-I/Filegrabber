@@ -6,8 +6,8 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 const handler = nc<NextApiRequest, NextApiResponse>();
 handler.use(session({ autoCommit: false }));
 
-handler.post(async (req: any, res) => {
-    await req.session.destroy();
+handler.post(async (req, res) => {
+    await (req as any).session.destroy();
     res.end();
 });
 

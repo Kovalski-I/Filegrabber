@@ -84,6 +84,25 @@
     cursor: pointer;
 }
 
+.linkInput {
+    grid-column-start: 1;
+    grid-column-end: 4;
+
+    text-align: center;
+    border-radius: 1rem;
+    border: none;
+    margin: 0 3rem 4rem 3rem;
+
+    transition: background-color 0.1s linear;
+    background-color: white;
+}
+
+.linkInput:focus {
+    transition: background-color 0.1s linear;
+    background-color: #DBDBDB;
+    outline: none;
+}
+
 .buttonHovered {
     transition: fill 0.1s linear;
     fill: black;

@@ -52,7 +52,7 @@
 
 .cardsField {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 175px));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     grid-template-rows: repeat(auto-fill, minmax(100px, 150px));
     height: 100%;
     gap: 2rem;

@@ -11,21 +11,42 @@ import type { FileCard } from '../types';
 
 import styles from '../styles/Card.module.css';
 
-const FileCardComponent = ({ file }: { file: FileCard }) => {
+interface Props {
+    file: FileCard;
+    flag: number;
+    deleteItem: (i: number) => void;
+}
+
+const FileCardComponent = ({ file, flag, deleteItem }: Props) => {
     const cardRef = useRef<HTMLDivElement>(null);
+    const cardColor = useRef<string>();
 
     const colors = useMemo(() => ['#5488A6', '#54A67A', '#BA5252', '#9F54A6', '#D89648'], []);
 
-    const grabFile = useCallback(async () => {
-        const { file_id, is_file } = file;
-        await axios.post('/api/files/delete', { file_id, is_file });
+    const getCardNode = useCallback(() => {
+        const node = cardRef.current;
+        if (!node) throw new Error('card node is null');
+
+        return node;
     }, []);
 
+    const grabFile = useCallback(async () => {
+        const card = getCardNode();
+        card.style.display = 'none';
+
+        deleteItem(flag);
+
+        const { file_id, is_file } = file;
+        await axios.post('/api/files/delete', { file_id, is_file });
+    }, [flag]);
+
     useEffect(() => {
-        const color = colors[getRandomInt(colors.length)];
-        if (!cardRef.current) {}
-        else cardRef.current.style.backgroundColor = color;
-    }, []);
+        if (!cardColor.current)
+            cardColor.current = colors[getRandomInt(colors.length)];
+
+        const card = getCardNode();
+        card.style.backgroundColor = cardColor.current;
+    });
 
     return (
         <div ref={cardRef} className={styles.card}>
@@ -40,7 +61,7 @@ const FileCardComponent = ({ file }: { file: FileCard }) => {
             <div className={styles.buttons}>
                 <div className={styles.grabCopy} title="Grab copy">
                     <a 
-                        href={file.is_file ? 
+                        href={file.is_file === 'true' ? 
                             `/uploads/${getHashedFilename(file.user_id, file.file_id.toString(), extname(file.info))}` : 
                             file.info}
                         download={file.is_file === 'true' ? file.info : undefined}
