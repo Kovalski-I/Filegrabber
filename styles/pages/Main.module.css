@@ -6,6 +6,8 @@
 }
 
 .head {
+    overflow: visible;
+
     position: sticky;
     position: -webkit-sticky;
     box-shadow: 0 0 8px black;
@@ -23,6 +25,17 @@
 
 .head {
     background-color: #515151;
+    min-height: 100px;
+}
+.head img {
+    min-height: 100px;
+    min-width: 100px;
+}
+.head > button {
+    flex-shrink: 3;
+}
+.head .logo {
+    flex-shrink: 1;
 }
 
 .logoCaption {
@@ -102,4 +115,47 @@
     transition: opacity 0.3s linear;
     transform: translateX(0);
     opacity: 1;
+}
+
+@media screen and (max-width: 1000px) {
+    .info {
+        flex-direction: column;
+    }
+
+    .interfaceImg {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .login > button {
+        display: none;
+    }
+
+    .head {
+        display: block;
+    }
+    .logo {
+        justify-content: center;
+    }
+
+    .interfaceImg {
+        margin-left: 260px;
+    }
+    .laptopImage {
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .logo {
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+}
+
+@media screen and (max-width: 330px) {
+    .interfaceImg {
+        margin-left: 340px;
+    }
 }

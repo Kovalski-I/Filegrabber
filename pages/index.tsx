@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Button from 'react-bootstrap/Button';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { validateToken } from '../lib/validate_tokens';
 import LoginPopup from '../components/popup';
 import Footer from '../components/footer';
 import Info from '../components/info';
@@ -28,9 +27,9 @@ const MainPage = ({ username }: Props) => {
     const [popupShown, setPopupShown] = useState(false);
     const [loginButtonAnim, animateButton] = useState(false);
 
-    const animStyle = useMemo(() => {
-        return { transition: 'opacity 0.3s linear', opacity: 1 };
-    }, []);
+    const animStyle = useMemo(() => ({ 
+        transition: 'opacity 0.3s linear', opacity: 1 
+    }), []);
 
     const closePopup = useCallback(() => setPopupShown(false), []);
 
@@ -39,7 +38,6 @@ const MainPage = ({ username }: Props) => {
         if (!blackDesc) return;
 
         document.addEventListener('scroll', () => {
-            console.log(window.scrollY);
             if (window.scrollY > 150) blackDesc.className = styles.blackDescriptionAnim;
             if (window.scrollY > 650) animateButton(true);
         });
@@ -93,7 +91,7 @@ const MainPage = ({ username }: Props) => {
                             <DownloadImage size={300} />
                         </span>
                     )} right={() => (
-                        <article>
+                        <article className={styles.articleBlack}>
                             <span className="blackDescription">
                                 <h2 className={utils.title}>Share your files with others</h2>
                                 <div className={utils.description}>

@@ -54,7 +54,7 @@ const AppPage = ({ isPublic, username, files, user_id }: AppPageProps) => {
     }, []);
 
     const uploadLink = useCallback(async (info: string | undefined) => {
-        if (!info) throw new Error('info is undefined');
+        if (!info && info !== '') throw new Error('info is undefined');
 
         try {
             new URL(info);
@@ -97,8 +97,6 @@ const AppPage = ({ isPublic, username, files, user_id }: AppPageProps) => {
     
             if (field_name === 'file') input.files = value;
             else input.value = value;
-
-            console.log(field_name, value);
 
             form.appendChild(input);
         }

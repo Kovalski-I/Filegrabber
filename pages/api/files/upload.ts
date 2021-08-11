@@ -24,18 +24,18 @@ const upload = multer({
             const result = await insertIntoFiles({ info, is_file, is_public, user_id });
 
             if (!result || is_file !== 'true') {
-                console.log('niggas sukc');
                 cb(new Error('result is undefined or the card is not a file'), '');
-                console.log('fuck your ass nigga');
             }
 
             await req.session.commit();
 
-            console.log('before');
             cb(null, getHashedFilename(user_id, result?.toString(), path.extname(info)));
-            console.log('after');
         }
-    })
+    }),
+    limits: {
+        fileSize: 5_000_000,
+        files: 1
+    }
 });
 
 handler.use(session({ autoCommit: false }));

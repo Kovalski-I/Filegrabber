@@ -1,4 +1,6 @@
-* {
+*,
+*:before,
+*:after {
     box-sizing: border-box;
 }
 
@@ -6,11 +8,15 @@ html,
 body {
     margin: 0;
     padding: 0;
+    width: 100%;
 }
 
 html {
     max-width: 100%;
-    overflow-x: hidden;
+}
+
+main {
+    overflow: hidden;
 }
 
 article {
@@ -41,4 +47,26 @@ main {
 
 .rect {
     width: 0;
+}
+
+@media screen and (max-width: 1000px) {
+    #downloadImage {
+        display: none;
+    }
+
+    #loginButton {
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    article {
+        padding: 2rem;
+    }
+}
+
+@media screen and (min-height: 800px) {
+    #loginButton {
+        opacity: 1;
+    }
 }

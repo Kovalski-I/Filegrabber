@@ -12,6 +12,7 @@
     position: absolute;
     top: 100%;
     width: 100%;
+    min-width: 290px;
     margin-top: 0;
 }
 
@@ -68,4 +69,16 @@
     color: #efefef;
 
     margin: 1rem auto;
+}
+
+@media screen and (max-width: 630px) {
+    .footer, .footerMain, .footerError {
+        padding: 0 20%;
+    }
+}
+
+@media screen and (max-width: 330px) {
+    .footer, .footerMain, .footerError {
+        padding: 0 10%;
+    }
 }

@@ -50,7 +50,6 @@ const LoginPopup = ({ visible, close }: Props) => {
                 </div>
                 <CloseButton size={30} closePopup={close} />
 
-                { /* Handle possible errors when testing */ }            
                 <GoogleLogin
                     clientId={GOOGLE_API_CLIENT_ID}
                     render={renderProps => (
