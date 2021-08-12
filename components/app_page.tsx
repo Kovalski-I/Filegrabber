@@ -103,6 +103,9 @@ const AppPage = ({ isPublic, username, files, user_id }: AppPageProps) => {
             form.appendChild(input);
         }
 
+        if (fileCards.length === 20) 
+            throw new Error('20 files are limit yet');
+
         form.submit();
     }, []);
 
