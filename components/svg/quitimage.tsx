@@ -6,7 +6,7 @@ const QuitImage = ({ size }: { size: number }) => {
     const [hovered, setHovered] = useState(false);
 
     return (
-        <div title="Quit from the app">
+        <div title="Quit from the app" tabIndex={0}>
             <svg 
                 onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
                 width={size} height={size * 1.25} viewBox="0 0 55 69" fill="none" 

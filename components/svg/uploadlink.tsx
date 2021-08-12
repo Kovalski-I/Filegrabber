@@ -6,7 +6,7 @@ const UploadLinkImage = ({ size }: { size: number }) => {
     const [hovered, setHovered] = useState(false);
 
     return (
-        <div title="Upload link">
+        <div title="Upload link" tabIndex={0}>
             <svg 
                 onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
                 width={size} height={size * 1.25} viewBox="0 0 55 69" fill="none" 

@@ -6,7 +6,7 @@ interface Props {
 }
 
 const LoginButton = ({ caption, onClick }: Props) => (
-    <div className={styles.loginButton} onClick={onClick}>
+    <div className={styles.loginButton} onClick={onClick} tabIndex={0}>
         <span>{caption}</span>
     </div>
 );
