@@ -38,10 +38,12 @@ const AppPage = ({ isPublic, username, files, user_id }: AppPageProps) => {
     const size = useMemo(() => 30, []);
 
     const deleteItem = useCallback((index: number) => {
-        const cards = fileCards.slice();
-        cards.splice(index, 1);
+        setFileCards(prevCards => {
+            const cards = prevCards.slice();
+            cards.splice(index, 1);
 
-        setFileCards(cards);
+            return cards;
+        });
     }, [files]);
 
     const getForm = useCallback(() => {
