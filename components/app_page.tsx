@@ -98,7 +98,6 @@ const AppPage = ({ isPublic, username, files, user_id }: AppPageProps) => {
             if (name === 'file') input.files = value;
             else input.value = value;
 
-            console.log('field:', input.name, input.type, input.name === 'file' ? input.files : input.value);
             form.appendChild(input);
         }
 

@@ -10,6 +10,8 @@ const App = ({ Component, pageProps }: AppProps) => (
             <meta charSet="utf-8" />
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 
+            <link rel="manifest" href="/manifest.json" />
+
             { /* Google Fonts */ }
             <link rel="preconnect" href="https://fonts.googleapis.com" key="fonts" />
             <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" key="fonts" />

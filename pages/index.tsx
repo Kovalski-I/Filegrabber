@@ -48,7 +48,13 @@ const MainPage = ({ username }: Props) => {
     return (
         <>
             <Head>
-                <title>Filegraber</title>
+                <title>Filegraber - Free Cloud for Files and Links Sharing</title>
+                <meta 
+                    name="description" 
+                    content="Filegraber is free and minimalistic service for file syncing and sharing. 
+                        It provides simple user interface to make it easy to sync and share 
+                        files between devices"
+                />
                 <meta 
                     name="google-signin-client_id" 
                     content={GOOGLE_API_CLIENT_ID} 

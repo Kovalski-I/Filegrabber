@@ -2,7 +2,6 @@ import nc from 'next-connect';
 import sqlite3  from 'sqlite3';
 import * as path from 'path';
 import * as fs from 'fs';
-import { session } from 'next-session';
 import { open } from 'sqlite';
 
 import { getHashedFilename } from '../../../lib/hash';
@@ -18,7 +17,6 @@ handler.post(async (req: any, res) => {
     const db = await getDB();
 
     const { file_id, is_file, user_id } = req.body;
-    console.log('user_id', user_id);
 
     if (!user_id)
         res.status(500).json({ error: 'user is not logged in' });

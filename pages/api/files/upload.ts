@@ -1,7 +1,6 @@
 import nc from 'next-connect';
 import multer from 'multer';
 import * as path from 'path';
-import { session } from 'next-session';
 
 import { getHashedFilename, getHash } from '../../../lib/hash';
 import { insertIntoFiles } from '../../../lib/db';
@@ -17,10 +16,6 @@ const upload = multer({
         destination: './public/uploads',
         filename: async (req: any, file, cb) => {
             const { info, is_file, is_public, user_id } = req.body;
-            console.log(file);
-            console.log(req.body);
-        
-            console.log('user_id', user_id);
 
             const result = await insertIntoFiles({ info, is_file, is_public, user_id: user_id });
 

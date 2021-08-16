@@ -1,0 +1,16 @@
+{
+    "short_name": "Filegraber",
+    "name": "Filegraber - Free Cloud for Files and Links Sharing",
+    "start_url": "/home",
+    "icons": [
+        {
+            "src": "/logo_black.png",
+            "type": "image/png",
+            "sizes": "650x650"
+        }
+    ],
+    "display": "standalone",
+    "background_color": "#fafafa",
+    "theme_color": "#515151",
+    "description": "Minimalistic service for file syncing and sharing"
+}

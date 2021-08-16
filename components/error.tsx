@@ -1,3 +1,5 @@
+import Head from 'next/head';
+
 import Footer from './footer';
 
 import styles from '../styles/Error.module.css';
@@ -8,17 +10,23 @@ interface Props {
 }
 
 const ErrorComponent = ({ title, caption }: Props) => (
-    <div className={styles.error}>
-        <div className={styles.title}>
-            {title}
-        </div>
+    <>
+        <Head>
+            <title>{title}</title>
+        </Head>
 
-        <div className={styles.caption}>
-            {caption}
-        </div>
+        <div className={styles.error}>
+            <div className={styles.title}>
+                {title}
+            </div>
 
-        <Footer inError />
-    </div>
+            <div className={styles.caption}>
+                {caption}
+            </div>
+
+            <Footer inError />
+        </div>
+    </>
 );
 
 export default ErrorComponent;

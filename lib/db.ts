@@ -5,7 +5,6 @@ import type { FileCard, InsertIntoFilesParams, User } from '../types';
 
 export const insertIntoFiles = async ({ info, is_file, is_public, user_id }: InsertIntoFilesParams) => {
     const db = await getDB();
-    console.log('user_id in method:', user_id);
     const result = await db.run(
         'INSERT INTO files (info, is_file, is_public, user_id) VALUES (?, ?, ?, ?)', 
         info, is_file, is_public, user_id
