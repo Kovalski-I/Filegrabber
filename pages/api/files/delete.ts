@@ -6,20 +6,19 @@ import { session } from 'next-session';
 import { open } from 'sqlite';
 
 import { getHashedFilename } from '../../../lib/hash';
+import { getDB } from '../../../lib/db';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 const handler = nc<NextApiRequest, NextApiResponse>({
     onError: (err, req, res) => res.status(500).end()
 });
-handler.use(session({ autoCommit: false }));
 
 handler.post(async (req: any, res) => {
-    const db = await open({ filename: 'db.sqlite', driver: sqlite3.Database });
+    const db = await getDB();
 
-    const { file_id, is_file } = req.body;
-    let { user_id } = req.body;
-    if (!user_id) user_id = req.session.user_id;
+    const { file_id, is_file, user_id } = req.body;
+    console.log('user_id', user_id);
 
     if (!user_id)
         res.status(500).json({ error: 'user is not logged in' });
@@ -40,8 +39,6 @@ handler.post(async (req: any, res) => {
     }
 
     await db.run('DELETE FROM files WHERE file_id = ?', file_id);
-
-    await req.session.commit();
 
     db.close();
     res.end();

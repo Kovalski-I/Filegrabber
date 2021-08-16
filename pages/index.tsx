@@ -12,6 +12,8 @@ import InterfaceImage from '../components/svg/interface';
 import DownloadImage from '../components/svg/download';
 import LaptopImage from '../components/svg/laptop';
 
+import { getUserByHash } from '../lib/db';
+
 import { GOOGLE_API_CLIENT_ID } from '../secrets';
 
 import styles from '../styles/pages/Main.module.css';
@@ -133,11 +135,14 @@ const MainPage = ({ username }: Props) => {
     );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-    const { username } = req.cookies;
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+    const { user_hash } = req.cookies;
+    const user = await getUserByHash(user_hash);
 
-    if (!username) return { props: { username: null } };
-    else return { props: { username } };
+    if (!user)
+        return { props: { username: null } };
+    else 
+        return { props: { username: user.username } };
 }
 
 export default MainPage;

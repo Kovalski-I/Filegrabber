@@ -133,6 +133,10 @@
         display: none;
     }
 
+    .loggedIn {
+        display: none;
+    }
+
     .head {
         display: block;
     }

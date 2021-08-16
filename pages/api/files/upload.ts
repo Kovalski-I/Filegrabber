@@ -16,40 +16,32 @@ const upload = multer({
     storage: multer.diskStorage({ 
         destination: './public/uploads',
         filename: async (req: any, file, cb) => {
-            const { info, is_file, is_public } = req.body;
+            const { info, is_file, is_public, user_id } = req.body;
+            console.log(file);
+            console.log(req.body);
+        
+            console.log('user_id', user_id);
 
-            let { user_id } = req.body;
-            if (!user_id) user_id = req.session.user_id;
+            const result = await insertIntoFiles({ info, is_file, is_public, user_id: user_id });
 
-            const result = await insertIntoFiles({ info, is_file, is_public, user_id });
-
-            if (!result || is_file !== 'true') {
+            if (!result || is_file !== 'true') 
                 cb(new Error('result is undefined or the card is not a file'), '');
-            }
-
-            await req.session.commit();
 
             cb(null, getHashedFilename(user_id, result?.toString(), path.extname(info)));
         }
     }),
     limits: {
         fileSize: 5_000_000,
-        files: 1
     }
 });
 
-handler.use(session({ autoCommit: false }));
-handler.use(upload.single('file'));
-
-handler.post(async (req, res, next) => {
+handler.post(upload.single('file'), async (req, res) => {
     const { info, is_file, is_public, user_id } = req.body;
     
     if (is_file === 'false')
-        await insertIntoFiles({ 
-            info, is_file, is_public, user_id: user_id ? user_id : (req as any).session.user_id 
-        });
+        await insertIntoFiles({ info, is_file, is_public, user_id });
 
-    if (!user_id) res.redirect('/home').end();
+    if (is_public === 'false') res.redirect('/home').end();
     res.redirect(`/public/${getHash(user_id)}`).end();
 });
 

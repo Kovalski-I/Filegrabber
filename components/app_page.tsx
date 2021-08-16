@@ -10,6 +10,7 @@ import PublicPageImage from './svg/publicpage';
 import UploadImage from './svg/uploadimage';
 import UploadLinkImage from './svg/uploadlink';
 import QuitImage from './svg/quitimage';
+
 import { deleteCookie } from '../lib/cookie';
 import { getHash } from '../lib/hash';
 
@@ -44,13 +45,11 @@ const AppPage = ({ isPublic, username, files, user_id }: AppPageProps) => {
 
             return cards;
         });
-    }, [files]);
+    }, []);
 
     const getForm = useCallback(() => {
         const form = formRef.current;
         if (!form) throw new Error('form is undefined');
-
-        form.innerHTML = '';
 
         return form;
     }, []);
@@ -68,8 +67,7 @@ const AppPage = ({ isPublic, username, files, user_id }: AppPageProps) => {
         const form = getForm();
 
         for (let [name, value] of Object.entries({ 
-            info, is_file: 'false', is_public: isPublic.toString(), 
-            user_id: isPublic ? user_id : ''
+            info, is_file: 'false', is_public: isPublic.toString(), user_id
         })) {
             const input = document.createElement('input');
             input.name = name;
@@ -79,27 +77,28 @@ const AppPage = ({ isPublic, username, files, user_id }: AppPageProps) => {
         }
         
         form.submit();
-    }, [isPublic]);
+    }, [isPublic, user_id]);
 
-    const handleFileDrop = useCallback((ev, files) => {
+    const handleFileDrop = useCallback(async (ev, files) => {
         ev.preventDefault();
 
         if (!(ev.dataTransfer || files)) return;
 
         const form = getForm();
 
-        for (let [field_name, value] of Object.entries({ 
-            info: files[0].name,  is_file: true, is_public: isPublic,
-            file: files, user_id: isPublic ? user_id : ''
+        for (let [name, value] of Object.entries({ 
+            info: files[0].name, user_id, is_file: 'true', is_public: isPublic.toString(),
+            file: files
         })) {
             const input = document.createElement('input');
-            input.type = field_name === 'file' ? 'file': 'hidden';
+            input.type = name === 'file' ? 'file': 'text'
             
-            input.name = field_name;
+            input.name = name;
     
-            if (field_name === 'file') input.files = value;
+            if (name === 'file') input.files = value;
             else input.value = value;
 
+            console.log('field:', input.name, input.type, input.name === 'file' ? input.files : input.value);
             form.appendChild(input);
         }
 
@@ -107,11 +106,10 @@ const AppPage = ({ isPublic, username, files, user_id }: AppPageProps) => {
             throw new Error('20 files are limit yet');
 
         form.submit();
-    }, []);
+    }, [isPublic, user_id]);
 
-    const handleLogout = useCallback(() => {
-        axios.post('/api/logout');
-        document.cookie = deleteCookie('username');
+    const handleLogout = useCallback(async () => {
+        document.cookie = deleteCookie('user_hash');
         router.push('/');
     }, []);
 
@@ -119,7 +117,7 @@ const AppPage = ({ isPublic, username, files, user_id }: AppPageProps) => {
         <div className={styles.app}>
             <div className={styles.buttons}>
                 {!isPublic && 
-                    <Link href={`public/${getHash(user_id)}`}>
+                    <Link href={`/public/${getHash(user_id)}`}>
                         <a target="_blank">
                             <PublicPageImage size={size} />
                         </a>

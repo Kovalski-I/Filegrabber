@@ -4,6 +4,7 @@ import { open } from 'sqlite';
 
 import AppPage from '../../components/app_page';
 import Footer from '../../components/footer';
+import { getDB } from '../../lib/db';
 
 import type { FileCard } from '../../types';
 
@@ -21,7 +22,7 @@ const PublicPage = ({ files, user_id, username }: { files: FileCard[], user_id: 
 }
 
 export const getServerSideProps = async ({ params }: { params: { public_link: string } }) => {
-    const db = await open({ filename: 'db.sqlite', driver: sqlite3.Database });
+    const db = await getDB();
     const { user_id, username } = await db.get(
         'SELECT user_id, username FROM users WHERE user_hash = ?', 
         params.public_link

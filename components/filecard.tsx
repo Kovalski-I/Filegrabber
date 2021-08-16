@@ -36,8 +36,8 @@ const FileCardComponent = ({ file, flag, deleteItem }: Props) => {
 
         deleteItem(flag);
 
-        const { file_id, is_file } = file;
-        await axios.post('/api/files/delete', { file_id, is_file });
+        const { file_id, is_file, user_id } = file;
+        await axios.post('/api/files/delete', { file_id, is_file, user_id });
     }, [flag]);
 
     useEffect(() => {

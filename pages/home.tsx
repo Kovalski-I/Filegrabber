@@ -1,36 +1,29 @@
 import { useRouter } from 'next/router';
-import axios from 'axios';
 import Head from 'next/head';
-import useSWR from 'swr';
 import { useEffect } from 'react';
 
 import AppPage from '../components/app_page';
 import Footer from '../components/footer';
 
-import type { FileCard } from '../types';
+import { getFiles, getUserByHash } from '../lib/db';
 
-interface Data {
-    user_id: string;
-    username: string;
-    rows: FileCard[];
-}
+import type { NextApiRequest } from 'next';
+import type { User, FileCard } from '../types';
 
-const fetcher = (url: string) => axios.get(url).then(res => res.data);
+type Data = User & { rows: FileCard[] };
 
-const HomePage = () => {
+const HomePage = ({ data }: { data: Data }) => {
     const router = useRouter();
-    const { data, error } = useSWR<Data, Error>('/api/users', fetcher);
 
     useEffect(() => {
         if (!data) {}
-        else if (!(data.user_id && data.username) || error) router.push('/');
-        else document.cookie = `username=${data.username}`;
-    }, [data]);
+        else if (!(data.user_id && data.username)) router.push('/');
+    }, []);
 
     if (!data) 
         // loading
         return null;
-    else if (!(data.user_id && data.username) || error)
+    else if (!(data.user_id && data.username))
         // no data recieved
         return null; 
 
@@ -46,10 +39,18 @@ const HomePage = () => {
     );
 }
 
-export const getServerSideProps = async () => {
-    return {
-        props: {}
-    };
+
+type HomeServerSideFunction = ({ req }: { req: NextApiRequest }) => 
+    Promise<{ props: { data: {} } } | { props: { data: User } }>;
+
+export const getServerSideProps: HomeServerSideFunction = async ({ req }) => {
+    const user = await getUserByHash(req.cookies.user_hash);
+    if (!user) return { props: { data: {} } };
+
+    const files = await getFiles(user.user_id);
+    const data: Data = Object.assign(user, { rows: files });
+
+    return { props: { data } };
 }
 
 export default HomePage;

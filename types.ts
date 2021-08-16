@@ -7,6 +7,12 @@ export interface ApiRequest {
     }
 }
 
+export interface User {
+    user_id: string;
+    user_hash: string;
+    username: string;
+}
+
 export interface FileCard {
     file_id: number;
     info: string;
