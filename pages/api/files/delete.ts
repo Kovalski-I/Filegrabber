@@ -26,14 +26,12 @@ handler.post(async (req: any, res) => {
         const hashed_name = getHashedFilename(user_id, file_id, path.extname(info));
 
         try {
-            console.log(__dirname);
             if (process.env.NODE_ENV === 'development')
                 fs.unlinkSync(path.join(__dirname,  '../../../../../public/uploads', hashed_name));
             else 
-                fs.unlinkSync(path.join(__dirname, '../../../../public/uploads', hashed_name));
+                fs.unlinkSync(path.join(__dirname, '../../../../../public/uploads', hashed_name));
 
         } catch {
-            console.log('caught');
             // file was not found in the fs, just deleting the record
         }
     }

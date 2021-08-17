@@ -13,11 +13,9 @@ const handler = nc<NextApiRequest, NextApiResponse>({
 });
 const upload = multer({ 
     storage: multer.diskStorage({ 
-        destination: process.env.NODE_ENV === 'development' ? './public/uploads' : './.next/public/uploads',
+        destination: './public/uploads',
         filename: async (req: any, file, cb) => {
             const { info, is_file, is_public, user_id } = req.body;
-            console.log('env:', process.env.NODE_ENV);
-            console.log(__dirname);
 
             const result = await insertIntoFiles({ info, is_file, is_public, user_id: user_id });
 

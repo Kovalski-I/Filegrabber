@@ -3,6 +3,9 @@
 # db
 db.sqlite
 
+# tsc output
+dist/
+
 # API ids and keys
 secrets.ts
 
