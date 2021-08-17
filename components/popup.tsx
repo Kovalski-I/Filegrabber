@@ -31,7 +31,7 @@ const LoginPopup = ({ visible, close }: Props) => {
         await axios.post('/api/users', { id_token, auth: 'g' });
 
         router.push('/home');
-    }, []);
+    }, [router]);
 
     const handleFacebookLogin = useCallback(async (response: ReactFacebookLoginInfo) => {
         const { accessToken } = response;
@@ -40,7 +40,7 @@ const LoginPopup = ({ visible, close }: Props) => {
         await axios.post('/api/users', { id_token: accessToken, auth: 'f' });
         
         router.push('/home');
-    }, []);
+    }, [router]);
 
     return (
         <div className={visible ? styles.wrapper : undefined}>

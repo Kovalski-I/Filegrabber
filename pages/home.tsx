@@ -18,7 +18,7 @@ const HomePage = ({ data }: { data: Data }) => {
     useEffect(() => {
         if (!data) {}
         else if (!(data.user_id && data.username)) router.push('/');
-    }, []);
+    }, [data, router]);
 
     if (!data) 
         // loading

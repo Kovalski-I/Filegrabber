@@ -63,7 +63,7 @@ const MainPage = ({ username }: Props) => {
 
             <div className={styles.head}>
                 <div className={styles.logo}>
-                    <Image src="/svg/logo_white.svg" width={100} height={100} />
+                    <Image src="/svg/logo_white.svg" alt="Logo" width={100} height={100} />
                     <span className={styles.logoCaption}>Filegraber</span>
                 </div>
                 
@@ -120,7 +120,7 @@ const MainPage = ({ username }: Props) => {
                         </div>
                         { username ? 
                             <span className={styles.loggedInWhite}>
-                                You're already logged in, {' '} 
+                                You&aposre already logged in, {' '} 
                                 <Link href="/home">
                                     <a className={styles.loginLinkWhite}>{username}</a>
                                 </Link>

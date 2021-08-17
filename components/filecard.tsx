@@ -38,7 +38,7 @@ const FileCardComponent = ({ file, flag, deleteItem }: Props) => {
 
         const { file_id, is_file, user_id } = file;
         await axios.post('/api/files/delete', { file_id, is_file, user_id });
-    }, [flag]);
+    }, [flag, deleteItem, file, getCardNode]);
 
     useEffect(() => {
         if (!cardColor.current)
@@ -66,6 +66,7 @@ const FileCardComponent = ({ file, flag, deleteItem }: Props) => {
                             file.info}
                         download={file.is_file === 'true' ? file.info : undefined}
                         target={file.is_file === 'false' ? '_blank' : undefined}
+                        rel="noreferrer nofollow"
                     >
                         <GrabCopyImage size={20} />
                     </a>
@@ -78,6 +79,7 @@ const FileCardComponent = ({ file, flag, deleteItem }: Props) => {
                             file.info}
                         download={file.is_file === 'true' ? file.info : undefined}
                         onClick={grabFile}
+                        rel="noreferrer nofollow"
                     >
                         <GrabFileImage size={20} />
                     </a>

@@ -28,7 +28,7 @@ interface AppPageProps {
 const AppPage = ({ isPublic, username, files, user_id }: AppPageProps) => {
     const router = useRouter();
 
-    const [fileCards, setFileCards] = useState(files.filter(
+    const [fileCards, setFileCards] = useState(files.reverse().filter(
         file => (file.is_public === 'true') === isPublic)
     );
     const [showSendLinkPopup, triggerSendLinkPopup] = useState(false);
@@ -77,7 +77,7 @@ const AppPage = ({ isPublic, username, files, user_id }: AppPageProps) => {
         }
         
         form.submit();
-    }, [isPublic, user_id]);
+    }, [isPublic, user_id, getForm]);
 
     const handleFileDrop = useCallback(async (ev, files) => {
         ev.preventDefault();
@@ -105,12 +105,12 @@ const AppPage = ({ isPublic, username, files, user_id }: AppPageProps) => {
             throw new Error('20 files are limit yet');
 
         form.submit();
-    }, [isPublic, user_id]);
+    }, [isPublic, user_id, fileCards.length, getForm]);
 
     const handleLogout = useCallback(async () => {
         document.cookie = deleteCookie('user_hash');
         router.push('/');
-    }, []);
+    }, [router]);
 
     return (
         <div className={styles.app}>
@@ -144,7 +144,7 @@ const AppPage = ({ isPublic, username, files, user_id }: AppPageProps) => {
                     className={fileCards.length === 0 ? styles.dropImage : styles.cardsField} 
                 >
                     {fileCards.length === 0 ? 
-                        <Image src="/svg/box.svg" width={415} height={150} /> : 
+                        <Image src="/svg/box.svg" alt="Box vector image" width={415} height={150} /> : 
                         fileCards.map((fileCard, index) => 
                             <FileCardComponent 
                                 key={fileCard.file_id} file={fileCard}
