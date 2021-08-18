@@ -11,6 +11,7 @@ const App = ({ Component, pageProps }: AppProps) => (
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 
             <link rel="manifest" href="/manifest.json" />
+            <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 
             { /* Google Fonts */ }
             <link rel="preconnect" href="https://fonts.googleapis.com" key="fonts" />

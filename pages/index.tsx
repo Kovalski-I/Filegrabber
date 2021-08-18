@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import Image from 'next/image';
+import img from 'next/image';
 import Button from 'react-bootstrap/Button';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -63,7 +63,7 @@ const MainPage = ({ username }: Props) => {
 
             <div className={styles.head}>
                 <div className={styles.logo}>
-                    <Image src="/svg/logo_white.svg" alt="Logo" width={100} height={100} />
+                    <img src="/svg/logo_white.svg" alt="Logo" width={100} height={100} />
                     <span className={styles.logoCaption}>Filegraber</span>
                 </div>
                 
@@ -120,7 +120,7 @@ const MainPage = ({ username }: Props) => {
                         </div>
                         { username ? 
                             <span className={styles.loggedInWhite}>
-                                You&aposre already logged in, {' '} 
+                                You{'\''}re already logged in, {' '} 
                                 <Link href="/home">
                                     <a className={styles.loginLinkWhite}>{username}</a>
                                 </Link>

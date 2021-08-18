@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import img from 'next/image';
 import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/router';
@@ -144,7 +144,7 @@ const AppPage = ({ isPublic, username, files, user_id }: AppPageProps) => {
                     className={fileCards.length === 0 ? styles.dropImage : styles.cardsField} 
                 >
                     {fileCards.length === 0 ? 
-                        <Image src="/svg/box.svg" alt="Box vector image" width={415} height={150} /> : 
+                        <img src="/svg/box.svg" alt="Box vector image" width={415} height={150} /> : 
                         fileCards.map((fileCard, index) => 
                             <FileCardComponent 
                                 key={fileCard.file_id} file={fileCard}
