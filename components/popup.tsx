@@ -9,8 +9,6 @@ import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props
 import CloseButton from '../components/svg/close';
 import LoginButton from '../components/loginbutton';
 
-import { FACEBOOK_APP_ID, GOOGLE_API_CLIENT_ID } from '../secrets';
-
 import type { GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
 import type { ReactFacebookLoginInfo } from 'react-facebook-login';
 
@@ -51,7 +49,7 @@ const LoginPopup = ({ visible, close }: Props) => {
                 <CloseButton size={30} closePopup={close} />
 
                 <GoogleLogin
-                    clientId={GOOGLE_API_CLIENT_ID}
+                    clientId={process.env.GOOGLE_API_CLIENT_ID as string}
                     render={renderProps => (
                         <LoginButton 
                             onClick={renderProps.onClick} caption="Log in with Google" 
@@ -63,7 +61,7 @@ const LoginPopup = ({ visible, close }: Props) => {
                     cookiePolicy={'single_host_origin'}
                 />
                 <FacebookLogin
-                    appId={FACEBOOK_APP_ID}
+                    appId={process.env.FACEBOOK_APP_ID}
                     fields="name" 
                     render={(renderProps: { onClick: () => void; }) => (
                         <LoginButton onClick={renderProps.onClick} caption="Log in with Facebook" />

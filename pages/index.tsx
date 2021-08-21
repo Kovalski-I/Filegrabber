@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import img from 'next/image';
 import Button from 'react-bootstrap/Button';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -13,8 +12,6 @@ import DownloadImage from '../components/svg/download';
 import LaptopImage from '../components/svg/laptop';
 
 import { getUserByHash } from '../lib/db';
-
-import { GOOGLE_API_CLIENT_ID } from '../secrets';
 
 import styles from '../styles/pages/Main.module.css';
 import utils from '../styles/Utils.module.css';
@@ -57,7 +54,7 @@ const MainPage = ({ username }: Props) => {
                 />
                 <meta 
                     name="google-signin-client_id" 
-                    content={GOOGLE_API_CLIENT_ID} 
+                    content={process.env.GOOGLE_API_CLIENT_ID} 
                 />
             </Head>
 

@@ -9,9 +9,6 @@ google2cddc90977a0d86c.html
 # tsc output
 dist/
 
-# API ids and keys
-secrets.ts
-
 # designs
 designs/
 
