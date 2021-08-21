@@ -12,6 +12,8 @@ import LoginButton from '../components/loginbutton';
 import type { GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
 import type { ReactFacebookLoginInfo } from 'react-facebook-login';
 
+import { GOOGLE_API_CLIENT_ID, FACEBOOK_APP_ID } from '../constants';
+
 import styles from '../styles/Popup.module.css';
 
 interface Props {
@@ -49,7 +51,7 @@ const LoginPopup = ({ visible, close }: Props) => {
                 <CloseButton size={30} closePopup={close} />
 
                 <GoogleLogin
-                    clientId={process.env.GOOGLE_API_CLIENT_ID as string}
+                    clientId={GOOGLE_API_CLIENT_ID}
                     render={renderProps => (
                         <LoginButton 
                             onClick={renderProps.onClick} caption="Log in with Google" 
@@ -61,7 +63,7 @@ const LoginPopup = ({ visible, close }: Props) => {
                     cookiePolicy={'single_host_origin'}
                 />
                 <FacebookLogin
-                    appId={process.env.FACEBOOK_APP_ID}
+                    appId={FACEBOOK_APP_ID}
                     fields="name" 
                     render={(renderProps: { onClick: () => void; }) => (
                         <LoginButton onClick={renderProps.onClick} caption="Log in with Facebook" />
