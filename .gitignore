@@ -1,8 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# db
-db.sqlite
-
 # domain ownership confirmation
 google2cddc90977a0d86c.html
 
