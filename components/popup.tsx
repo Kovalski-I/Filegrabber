@@ -59,6 +59,7 @@ const LoginPopup = ({ visible, close }: Props) => {
                     )}
                     onSuccess={response => handleGoogleLogin(response)}
                     onFailure={() => alert('Failure while trying to log you in')}
+                    isSignedIn={false}
                     cookiePolicy={'single_host_origin'}
                 />
                 <FacebookLogin

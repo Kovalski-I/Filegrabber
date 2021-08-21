@@ -1,0 +1,6 @@
+designs/
+dist/
+github/
+.next/
+schema.sql
+.eslintrc

@@ -3,6 +3,9 @@
 # db
 db.sqlite
 
+# domain ownership confirmation
+google2cddc90977a0d86c.html
+
 # tsc output
 dist/
 

@@ -1,6 +1,9 @@
 import sqlite3  from 'sqlite3';
 import { open } from 'sqlite';
 
+import { join } from 'path';
+import { readdirSync } from 'fs';
+
 import type { FileCard, InsertIntoFilesParams, User } from '../types';
 
 export const insertIntoFiles = async ({ info, is_file, is_public, user_id }: InsertIntoFilesParams) => {
@@ -33,4 +36,11 @@ export const getUserByHash = async (hash: string) => {
     return user;
 }
 
-export const getDB = async () => await open({ filename: 'db.sqlite', driver: sqlite3.Database });
+export const getDB = async () => { 
+    return await open({ 
+        filename: process.env.NODE_ENV === 'production' ? 
+            join(__dirname, '../../../db.sqlite') : 
+            'db.sqlite', 
+        driver: sqlite3.Database 
+    }); 
+}

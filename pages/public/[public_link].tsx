@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import sqlite3  from 'sqlite3';
-import { open } from 'sqlite';
 
 import AppPage from '../../components/app_page';
 import Footer from '../../components/footer';
@@ -21,13 +20,22 @@ const PublicPage = ({ files, user_id, username }: { files: FileCard[], user_id: 
     );
 }
 
-export const getServerSideProps = async ({ params }: { params: { public_link: string } }) => {
+type Request = { params: { public_link: string }, res: any };
+
+export const getServerSideProps = async ({ params, res }: Request) => {
     const db = await getDB();
-    const { user_id, username } = await db.get(
+
+    const user = await db.get(
         'SELECT user_id, username FROM users WHERE user_hash = ?', 
         params.public_link
     );
 
+    if (!user) {
+        res.statusCode = 404;
+        res.end();
+    }
+
+    const { user_id, username } = user;
     const files = await db.all('SELECT * FROM files WHERE user_id = ?', user_id);
 
     return {

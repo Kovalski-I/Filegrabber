@@ -1,6 +1,4 @@
-import img from 'next/image';
 import Link from 'next/link';
-import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo, useRef, useState } from 'react';
 
