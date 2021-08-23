@@ -17,7 +17,7 @@ const upload = multer({
         filename: async (req: any, file, cb) => {
             const { info, is_file, is_public, user_id } = req.body;
 
-            const result = await insertIntoFiles({ info, is_file, is_public, user_id: user_id });
+            const result = await insertIntoFiles({ info, is_file, is_public, user_id });
 
             if (!result || is_file !== 'true') 
                 cb(new Error('result is undefined or the card is not a file'), '');
@@ -26,7 +26,7 @@ const upload = multer({
         }
     }),
     limits: {
-        fileSize: 5_000_000,
+        fileSize: 100_000_000,
     }
 });
 

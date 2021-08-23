@@ -47,7 +47,8 @@
 }
 
 .dropImage img {
-    margin-top: 8.5% !important;
+    margin: auto;
+    margin-top: 10%;
 }
 
 .cardsField {
