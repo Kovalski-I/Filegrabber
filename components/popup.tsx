@@ -46,7 +46,7 @@ const LoginPopup = ({ visible, close }: Props) => {
         <div className={visible ? styles.wrapper : undefined}>
             <div className={visible ? styles.popupVisible : styles.popupUnvisible}>
                 <div className={styles.captionBox}>
-                    <span>Logging in into Filegraber</span>
+                    <span>Logging in into Filegrabber</span>
                 </div>
                 <CloseButton size={30} closePopup={close} />
 

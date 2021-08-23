@@ -30,8 +30,8 @@ const HomePage = ({ data }: { data: Data }) => {
     return (
         <>
             <Head>
-                <title>Home - Filegraber</title>
-                <meta name="description" content="Main application page of Filegraber" />
+                <title>Home - Filegrabber</title>
+                <meta name="description" content="Main application page of Filegrabber" />
             </Head>
 
             <AppPage isPublic={false} username={data.username} user_id={data.user_id} files={data.rows} />

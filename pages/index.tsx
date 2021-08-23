@@ -46,10 +46,10 @@ const MainPage = ({ username }: Props) => {
     return (
         <>
             <Head>
-                <title>Filegraber - Free Cloud for Files and Links Sharing</title>
+                <title>Filegrabber - Free Cloud for Files and Links Sharing</title>
                 <meta 
                     name="description" 
-                    content="Filegraber is free and minimalistic service for file syncing and sharing. 
+                    content="Filegrabber is free and minimalistic service for file syncing and sharing. 
                         It provides simple user interface to make it easy to sync and share 
                         files between devices"
                 />
@@ -62,7 +62,7 @@ const MainPage = ({ username }: Props) => {
             <div className={styles.head}>
                 <div className={styles.logo}>
                     <img src="/svg/logo_white.svg" alt="Logo" width={100} height={100} />
-                    <span className={styles.logoCaption}>Filegraber</span>
+                    <span className={styles.logoCaption}>Filegrabber</span>
                 </div>
                 
                 <div className={styles.login}>
@@ -82,7 +82,7 @@ const MainPage = ({ username }: Props) => {
                     <article>
                         <h2 className={utils.title}>Easily sync files between your devices</h2>
                         <div className={utils.description}>
-                            Filegraber is free tool for sharing files and hyperlinks between your devices. 
+                            Filegrabber is free tool for sharing files and hyperlinks between your devices. 
                             Just drop the file from one device and grab it from another. Everything is simple 
                             as it should be.
                         </div>
@@ -101,7 +101,7 @@ const MainPage = ({ username }: Props) => {
                             <span className="blackDescription">
                                 <h2 className={utils.title}>Share your files with others</h2>
                                 <div className={utils.description}>
-                                    Filegraber can expose files to the page accessed via the public link.  
+                                    Filegrabber can expose files to the page accessed via the public link.  
                                     Everyone can also send you files using your public page anonymously and 
                                     without registration.
                                 </div>
@@ -114,7 +114,7 @@ const MainPage = ({ username }: Props) => {
                     <article>
                         <h2 className={utils.title}>No registration needed</h2>
                         <div className={utils.description}>
-                            You can start using Filegraber now if you have Google or Facebook account.
+                            You can start using Filegrabber now if you have Google or Facebook account.
                         </div>
                         { username ? 
                             <span className={styles.loggedInWhite}>
