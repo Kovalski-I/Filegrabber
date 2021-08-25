@@ -26,7 +26,7 @@ interface AppPageProps {
 const AppPage = ({ isPublic, username, files, user_id }: AppPageProps) => {
     const router = useRouter();
 
-    const [fileCards, setFileCards] = useState(files.reverse().filter(
+    const [fileCards, setFileCards] = useState(files.filter(
         file => (file.is_public === 'true') === isPublic)
     );
     const [showSendLinkPopup, triggerSendLinkPopup] = useState(false);
