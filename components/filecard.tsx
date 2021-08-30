@@ -6,6 +6,7 @@ import GrabFileImage from './svg/grabfile';
 import GrabCopyImage from './svg/grabcopy';
 import { getHashedFilename } from '../lib/hash';
 import { getRandomInt } from '../lib/random';
+import { shortenName } from '../lib/format';
 
 import type { FileCard } from '../types';
 
@@ -55,7 +56,9 @@ const FileCardComponent = ({ file, flag, deleteItem }: Props) => {
             </div>
 
             <div className={styles.filename}>
-                {file.is_file === 'true' ? file.info : new URL(file.info).hostname}
+                {file.is_file === 'true' ? 
+                    (file.info.length > 35 ? shortenName(file.info, 35) : file.info) : 
+                    new URL(file.info).hostname}
             </div>
 
             <div className={styles.buttons}>
