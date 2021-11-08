@@ -6,7 +6,7 @@ const GithubLogo = ({ size }: { size: number }) => {
     const [hovered, setHovered] = useState(false);
 
     return (
-        <a href="https://github.com/Kovalski-I">
+        <a href="https://github.com/t-kovalskii/Filegrabber">
             <svg width={size} height={size} viewBox="0 0 88 86" fill="none" 
                 onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
                 className={styles.image}

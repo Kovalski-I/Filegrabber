@@ -24,7 +24,7 @@ const HomePage = ({ data }: { data: Data }) => {
         // loading
         return null;
     else if (!(data.user_id && data.username))
-        // no data recieved
+        // no data received
         return null; 
 
     return (
